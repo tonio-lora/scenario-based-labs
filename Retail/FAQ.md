@@ -2,15 +2,15 @@
 
 ##  What is the difference between the `demo` and `lab` modes?
 
-These scenerios are designed for two use cases:
+These scenarios are designed for two use cases:
 
-+   **Demo** - a field person wants to show how cosmosdb works with a retail type environment with AI built into it.  They just want to fire up an environment and go.
++   **Demo** - a field person wants to show how Cosmos DB works with a retail type environment with AI built into it.  They just want to fire up an environment and go.
 
 +   **Lab** - an attendee or Microsoft customer/partner wants to do all the work from scratch and setup the environment to learn how to work with CosmosDB at an intimate level, and to see how to integrate AI into a solution.
 
 ##  I got an error about multiple subscriptions named the same
 
-The script expects that you do not have more than one subscription with the same name when it enumrates the results.
+The script expects that you do not have more than one subscription with the same name when it enumerates the results.
 
 ##  I'm getting errors in later parts of the script, what gives?
 
@@ -22,7 +22,7 @@ In several cases it could be that your subscription may be throttled by Microsof
 
 Some Azure resources do not support the `incremental` mode yet.  Stream Analytics and Logic Apps are two examples of this.  Redeploying them will overwrite many of your settings.  We break these out to ensure if you have already created them, you won't need to reconfigure the services if you redeploy something.
 
--   labdeploy_main.json - All the major components.  This script is requried to succeed.
+-   labdeploy_main.json - All the major components.  This script is required to succeed.
 -   labdeploy_cosmos.json - The CosmosDB containers
 -   labdeploy_streamanalytics.json - The stream analytics resource
 -   labdeploy_logicapp.json - The Logic App resource
@@ -33,6 +33,6 @@ You can target the region by changing the $region variable in the deploy.ps1 Pow
 
 ##  Why does the script do a hard stop for user input?
 
-Unfotunately, not everything in Azure is fully automatable.  Certain resources such as Azure Functions and Azure Databricks require user intervention in order to reach the maximum automation level available.  
+Unfortunately, not everything in Azure can be automated.  Certain resources such as Azure Functions and Azure Databricks require user intervention in order to reach the maximum automation level available.  
 
-The deployment script pushes the limits for full automation of a demo envrionment.  Feel free to take and use in your own deployment scripts!
+The deployment script pushes the limits for full automation of a demo environment.  Feel free to take and use in your own deployment scripts!
