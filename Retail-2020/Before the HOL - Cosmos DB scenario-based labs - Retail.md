@@ -93,7 +93,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 4. **Close** the PowerShell ISE window after the Azure CLI update completes. This ensures that the latest CLI version is used when running the following scripts.
 
-5. **Re-open** the PowerShell ISE window, then browse to the **C:\scenario-based-labs-master\Retail\deploy\deploy.ps1** PowerShell script in an PowerShell ISE window
+5. **Re-open** the PowerShell ISE window, then browse to the **C:\scenario-based-labs-master\Retail-2020\deploy\deploy.ps1** PowerShell script in an PowerShell ISE window
 
    > **NOTE** You can reference the [Frequently Asked Questions/Issues](FAQ.md) if you run into issues with your deployment.
 
@@ -128,7 +128,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
    - App Service Plans
    - Event Hub
    - Stream Analytics Job
-   - Databricks Service
+   - Azure Synapse Analytics
    - Cosmos DB
    - Key Vault
    - Storage Accounts
