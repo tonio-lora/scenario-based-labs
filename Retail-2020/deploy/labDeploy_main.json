@@ -22,6 +22,14 @@
         "tenantId": {
             "type": "string",
             "defaultValue": ""
+        },
+        "sqlAdminLogin": {
+            "type": "string",
+            "defaultValue": ""
+        },
+        "sqlAdminPwd": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
     "variables": {
@@ -376,7 +384,7 @@
         {
             "name": "01_Main_Synapse",
             "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2016-09-01",
+            "apiVersion": "2018-05-01",
             "dependsOn": [],
             "properties": {
               "mode": "Incremental",
@@ -385,9 +393,9 @@
                 "contentVersion": "1.0.0.0"
               },
               "parameters": {
-                "workspaceName": { "value": "[variables('synapseWorkspaceName')]" },
-                "sqlAdministratorLogin" : "sqladmin",
-                "sqlAdministratorPassword" : "Password.!23"
+                "name": { "value": "[variables('synapseWorkspaceName')]" },
+                "sqlAdministratorLogin" : {"value":"[parameters('sqlAdminLogin')]"},
+                "sqlAdministratorPassword" : {"value":"[parameters('sqlAdminPwd')]"}
               }
             }
           },

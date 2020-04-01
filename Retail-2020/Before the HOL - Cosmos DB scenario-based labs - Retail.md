@@ -106,6 +106,8 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
    $mode = "lab"  # Can be 'lab' or 'demo'
    $subscriptionId = "YOUR SUBSCRIPTION ID" # You can find this at the top of your Azure resource group or any Azure resource, or in the Subscriptions link under "All services" in the portal's left-hand menu
    $prefix = "YOUR INITIALS"
+   $sqlAdminLogin = "anlo" # Login for Azure Synapse Workspace
+   $sqlAdminPwd = "Password.123" # Make sure to use a good password
    $isSpektra = $true # Set to $true if you are running in a Spektra-hosted environment (https://manage.cloudlabs.ai) instead of your own Azure subscription. Otherwise, set to $false.
    $databaseId = "movies"
    $movieApiKey = "YOUR MOVIE API KEY"

@@ -16,6 +16,13 @@ $subscriptionId = "YOUR SUB ID"
 #create a unique resource group name
 $prefix = "YOUR INIT"
 
+#create a sql admin login
+
+$sqlAdminLogin = "anlo"
+
+#create a sql admin pwd
+$sqlAdminPwd = "Password.123"
+
 #used for when you are using spektra environment
 $isSpektra = $false;
 
@@ -35,8 +42,8 @@ $databaseId = "movies";
 #FYI - not all regions have been tested - 
 #Check your region support here : https://azure.microsoft.com/en-us/global-infrastructure/services/?products=
 #for a list of regions run : az account list-locations -o table
-#OK - westus, eastus, northeurope
-$region = "northeurope";
+#OK - eastus, northeurope
+$region = "eastus";
 
 #register at https://api.themoviedb.org
 $movieApiKey = "YOUR API KEY";
@@ -359,7 +366,7 @@ $json = ConvertObjectToJson $res;
 #help out with the email address...
 $userEmail = $json[0].user.name;
 
-$res = az ad user show --upn-or-object-id $userEmail
+$res = az ad user show --id $userEmail
 $json = ConvertObjectToJson $res
 
 #get object id for current user to assign to key vault
@@ -399,6 +406,8 @@ $parameters = @{
                  "prefix"=@{"value"="$prefix"}
                  "tenantId"=@{"value"="$tenantId"}
                  "userObjectId"=@{"value"="$userObjectId"}
+                 "sqlAdminLogin"=@{"value"="$sqlAdminLogin"}
+                 "sqlAdminPwd"=@{"value"="$sqlAdminPwd"}
                  }
             } | ConvertTo-Json
             
@@ -429,7 +438,9 @@ $parameters = @{
                  "msiId"=@{"value"="TBD"}
                  "prefix"=@{"value"="$prefix"}
                  "tenantId"=@{"value"="$tenantId"}
-                 "userObjectId"=@{"value"="$userObjectId"}
+                 "userObjectId"=@{"value"="$userObjectId"}                 
+                 "sqlAdminLogin"=@{"value"="$sqlAdminLogin"}
+                 "sqlAdminPwd"=@{"value"="$sqlAdminPwd"}
                  }
             } | ConvertTo-Json
 
