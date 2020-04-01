@@ -1,0 +1,24 @@
+{
+  "properties": {
+	"type": "Stream",
+	"datasource": {
+	  "type": "Microsoft.ServiceBus/EventHub",
+	  "properties": {
+		"serviceBusNamespace": "s2event",
+		"sharedAccessPolicyName": "RootManageSharedAccessKey",
+		"eventHubName": "store"
+	  }
+	},
+	"serialization": {
+	  "type": "Json",
+	  "properties": {
+		"encoding": "UTF8"
+	  }
+	},
+	"diagnostics": {
+	  "conditions": []
+	}
+  },
+  "name": "s2event",
+  "type": "Microsoft.StreamAnalytics/streamingjobs/inputs"
+}

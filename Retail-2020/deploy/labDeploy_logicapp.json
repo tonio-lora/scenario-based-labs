@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+		"region": {
+            "type": "string",
+            "defaultValue": "westus"
+        }
+    },
+    "variables": {
+        "location": "[parameters('region')]",
+		"name-suffix": "[uniqueString(resourceGroup().id)]",		
+		"workflows_s2scenerio_name" : "[concat('s2logicapp', variables('name-suffix'))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Logic/workflows",
+            "apiVersion": "2017-07-01",
+            "name": "[variables('workflows_s2scenerio_name')]",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                
+            ],
+            "properties": {
+                "state": "Enabled",
+                "definition": {
+                    "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+                    "contentVersion": "1.0.0.0",
+                    "parameters": {
+                        "$connections": {
+                            "defaultValue": {},
+                            "type": "Object"
+                        }
+                    },
+                    "triggers": {
+                        "manual": {
+                            "type": "Request",
+                            "kind": "Http",
+                            "inputs": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "actions": {
+                        
+                    },
+                    "outputs": {}
+                },
+                "parameters": {
+                    
+                }
+            }
+        }
+    ],
+	"outputs": {
+		"hash" : {
+			"type" : "string",
+			"value" : "[variables('name-suffix')]"
+		}
+	}
+}
