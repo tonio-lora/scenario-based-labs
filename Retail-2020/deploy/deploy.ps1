@@ -166,11 +166,11 @@ function DeployTemplate($filename, $skipDeployment, $parameters, $name)
 
         if (!$parameters)
         {
-            $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail\deploy\$fileName") --output json)
+            $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail-2020\deploy\$fileName") --output json)
         }
         else
         {
-            $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail\deploy\$fileName") --output json --parameters `@$githubpath\parameters.json)
+            $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail-2020\deploy\$fileName") --output json --parameters `@$githubpath\parameters.json)
         }
         
 
@@ -267,7 +267,7 @@ function SetupStreamAnalytics($suffix)
 {
     #deploy the template
     $deployId = "Microsoft.Template"
-    $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail\deploy\labdeploy2.json") --output json )
+    $result = $(az deployment group create --name $deployId --resource-group $rgName --mode Incremental --template-file $($githubpath + "\retail-2020\deploy\labdeploy2.json") --output json )
 
     #wait for the job to complete...
     $res = $(az deployment group list --resource-group $rgname --output json)
@@ -559,7 +559,7 @@ if ($mode -eq "demo")
 { 
     write-host "Deploying the web application"
 
-    $res = $(az webapp deployment source config-zip --resource-group $rgName --name $webAppName --src "$githubpath/retail/deploy/webapp.zip")
+    $res = $(az webapp deployment source config-zip --resource-group $rgName --name $webAppName --src "$githubpath/retail-2020/deploy/webapp.zip")
     $json = ConvertObjectToJson $res;
 }
 
@@ -576,7 +576,7 @@ if ($mode -eq "demo")
 {
     write-host "Deploying the function app"
 
-    $res = $(az functionapp deployment source config-zip --resource-group $rgName --name $funcAppName --src "$githubpath/retail/deploy/functionapp.zip")
+    $res = $(az functionapp deployment source config-zip --resource-group $rgName --name $funcAppName --src "$githubpath/retail-2020/deploy/functionapp.zip")
     $json = ConvertObjectToJson $res;
 }
 
@@ -721,9 +721,9 @@ if ($mode -eq "demo")
 {
     write-host "Compiling the projects..."
 
-    BuildVS "$githubPath\Retail\Solution\Data Import\MovieDataImport.sln" $true $true
-    BuildVS "$githubPath\Retail\Solution\DataGenerator\DataGenerator.sln" $true $true
-    BuildVS "$githubPath\Retail\Solution\Contoso Movies\Contoso.Apps.Movies.sln" $true $true
+    BuildVS "$githubPath\Retail-2020\Solution\Data Import\MovieDataImport.sln" $true $true
+    BuildVS "$githubPath\Retail-2020\Solution\DataGenerator\DataGenerator.sln" $true $true
+    BuildVS "$githubPath\Retail-2020\Solution\Contoso Movies\Contoso.Apps.Movies.sln" $true $true
 }
 
 
@@ -738,20 +738,20 @@ $folders = ("starter", "solution")
 
 foreach($folder in $folders)
 {
-    $filePath = "$githubpath\Retail\$folder\Data Import\app.config"
+    $filePath = "$githubpath\Retail-2020\$folder\Data Import\app.config"
     UpdateConfig $filePath;
 
-    $filePath = "$githubpath\Retail\$folder\DataGenerator\app.config"
+    $filePath = "$githubpath\Retail-2020\$folder\DataGenerator\app.config"
     UpdateConfig $filePath;
 
-    $filePath = "$githubpath\Retail\$folder\Contoso Movies\Contoso.Apps.Movies.Web\web.config"
+    $filePath = "$githubpath\Retail-2020\$folder\Contoso Movies\Contoso.Apps.Movies.Web\web.config"
     UpdateConfig $filePath;
 }
 
 if ($mode -eq "demo")
 { 
     #update the app.config file with the new values
-    $filePath = "$githubpath\Retail\Solution\Data Import\bin\Debug\MovieDataImport.exe.config"
+    $filePath = "$githubpath\Retail-2020\Solution\Data Import\bin\Debug\MovieDataImport.exe.config"
     UpdateConfig $filePath;
 }
 
