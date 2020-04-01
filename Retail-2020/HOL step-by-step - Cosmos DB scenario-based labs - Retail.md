@@ -74,9 +74,7 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
   The solution for the Retail scenario centers around **Cosmos DB**, which acts as the globally-available, highly scalable data storage for streaming event data for reporting and external integrations. User telemetry data flows in from the data generator where an **Azure function** processes the event data and inserts it into a container in Cosmos DB.
 
-  - Event processing with Azure Functions:
-
-  The Cosmos DB change feed triggers a single Azure function (although the functionality could be broken into many different functions). The single function provides three pieces of functionality.
+  - Event processing with Azure Functions: The Cosmos DB change feed triggers a single Azure function (although the functionality could be broken into many different functions). The single function provides three pieces of functionality.
 
   - **Aggregate Calculations** - This code updates the item aggregations for the `buy` events to keep track of the top items purchased. This will continually update and drive the `top` suggestions. You will see this when you execute the Data Generator tool.
 
@@ -88,7 +86,7 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
   - Stream Analytics queries the forwarded event data and aggregates to **Power BI** to display a real-time dashboard of user activity.
 
-- Advanced analytics and ML model training:
+- Advanced Analytics and ML model training:
 
   - **Azure Synapse Analytics** is used to generate a set of offline calculations based on user events to create implicit ratings and associations used to drive new and current user recommendations.
 
@@ -114,17 +112,21 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
 Refer to the Before the hands-on lab setup guide manual before continuing to the lab exercises.
 
-// TODO 11: Delete the Vehicle item.
-// TODO: Complete this
-# TODO: Compelte this
-
-## Exercise 1: Configure Synapse Analytics and generate event data
+## Exercise 1: Configure Azure Synapse Analytics and generate event data
 
 **Duration**: 30 minutes
 
 **Synopsis**: We have pre-generated a set of events that include **buy** and **details** events. Based on this data, a **Top Items** recommendation will be made to users that are new to the site (aka a cold start recommendation). You will implement this top items code in the web application and function applications, then deploy the applications to test the functionality.
 
-The algorithms for creating the offline calculations are written in Python and are executed via Azure Synapse Analytics.
+The algorithms for creating the offline calculations are written in Python and are executed via Azure Synapse 
+
+## Exercise 2: Configure Azure Synapse Analytics and generate event data
+
+**Duration**: 30 minutes
+
+**Synopsis**: We have pre-generated a set of events that include **buy** and **details** events. Based on this data, a **Top Items** recommendation will be made to users that are new to the site (aka a cold start recommendation). You will implement this top items code in the web application and function applications, then deploy the applications to test the functionality.
+
+The algorithms for creating the offline calculations are written in Python and are executed via Azure Synapse Analytics Notebooks.
 
 ### Task 1: Configure Azure Synapse Analytics
 
@@ -271,7 +273,7 @@ The algorithms for creating the offline calculations are written in Python and a
 
 > NOTE: You must wait for the Event Generator Databricks notebook to be completed first before running this step. This is to ensure that later steps in the lab to match.
 
-## Exercise 2: Complete and deploy Web and Function App
+## Exercise 3: Complete and deploy Web and Function App
 
 **Duration**: 30 minutes
 
@@ -384,7 +386,7 @@ When you set a number of RUs for a container, Cosmos DB ensures that those RUs a
 
 > NOTE: These are simply suggestions based on the top purchased items from the pre-generated events.
 
-## Exercise 3: Perform and deploy association rules calculation for offline algorithms
+## Exercise 4: Perform and deploy association rules calculation for offline algorithms
 
 **Duration**: 30 minutes
 
@@ -420,7 +422,7 @@ The notebook examined the `events` data to find items that tend to be purchased 
 
     > NOTE: You will only see about 8 items generated here.
 
-## Exercise 4: Complete and deploy Web App and Function App (Association Rules)
+## Exercise 5: Complete and deploy Web App and Function App (Association Rules)
 
 **Duration**: 30 minutes
 
@@ -502,7 +504,7 @@ The notebook examined the `events` data to find items that tend to be purchased 
 
 3. Notice the main page now has different recommendations than what you received earlier, but we are still missing the similar 'liked' items
 
-## Exercise 5: Perform and deploy collaborative filtering rules calculation
+## Exercise 6: Perform and deploy collaborative filtering rules calculation
 
 **Duration**: 30 minutes
 
@@ -700,7 +702,7 @@ The notebook examined the `events` data to find items that tend to be purchased 
 
     ![The Contoso Movie website is displayed with the Collaborative items as suggestions.](./media/xx_WebSite_03.png 'Contoso Movies web site')
 
-## Exercise 6: Reporting with Stream Analytics and Power BI
+## Exercise 7: Reporting with Stream Analytics and Power BI
 
 **Duration**: 30 minutes
 
@@ -910,7 +912,7 @@ The notebook examined the `events` data to find items that tend to be purchased 
 
     ![This graphic shows the layout of the tiles in the Power BI Dashboard when the event stream is running.](./media/xx_PowerBI_04.png 'Continuously updating dashboard')
 
-## Exercise 7: Email alerts using Logic Apps
+## Exercise 8: Email alerts using Logic Apps
 
 **Duration**: 30 minutes
 
